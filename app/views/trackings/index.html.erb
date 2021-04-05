@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<div class="seguimientos">
+  <div class="container-md d-flex justify-content-center flex-column">
+    <div class="container2">
+      <h2 class="text-center mb-5">Seguimientos</h2>
+
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <% @trackings.each do |tracking| %>
+          <% @numero += 1 %>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-heading<%= @numero %>">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= @numero %>" aria-expanded="false" aria-controls="flush-collapse<%= @numero %>">
+                <p class="text-black">
+                  <%= tracking.guia %>
+                  <%= link_to 'Eliminar', tracking, method: :delete, data: {confirm: 'Seguro?'} %>
+                </p>
+              </button>
+            </h2>
+            <div id="flush-collapse<%= @numero %>" class="accordion-collapse collapse" aria-labelledby="flush-heading<%= @numero %>" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                Nombre: <code><%= tracking.nombre %></code> <br>
+                Desde: <code><%= tracking.desde %></code> <br>
+                Hasta: <code><%= tracking.hasta %></code> <br>
+                Descripción: <code><%= tracking.description %></code> <br>
+                Estado: <code><%= tracking.estado %></code> <br>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <br>
+
+      <div class="text-center mt-5">
+        <%= link_to 'Nueva consulta', root_path, class: 'btn btn-primary btn-md text-white' %>
+      </div>
+    </div>
+  </div>
+</div>
